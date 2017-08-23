@@ -10,6 +10,7 @@ packer build -var-file="packer-conf-aws.json" build-aws.json
 
 # Terraform will create an ansible inventory file from the template `inventory-openshift-template`
 # terraform will insert master and node hostname and ipnumbers within the tag ${masters}, ${nodes}
+# If you want to add more parameters to inventory, please do so in file: `inventory-openshift-template`
 
 # in repo root directory:
 
