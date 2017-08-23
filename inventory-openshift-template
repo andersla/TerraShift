@@ -6,7 +6,7 @@ etcd
 
 # Set variables common for all OSEv3 hosts
 [OSEv3:vars]
-ansible_ssh_user=centos
+ansible_ssh_user=${ansible_ssh_user}
 ansible_become=yes
 
 openshift_deployment_type=origin
@@ -28,14 +28,13 @@ openshift_disable_check=disk_availability,docker_storage,memory_availability
 
 # host group for masters
 [masters]
-ip-10-0-131-24 ansible_ssh_host=54.229.56.60 ansible_ssh_user=centos
+${masters}
 
 # host group for etcd
 [etcd]
-ip-10-0-131-24 ansible_ssh_host=54.229.56.60 ansible_ssh_user=centos
+${etcds}
 
 # host group for nodes, includes region info
 [nodes]
-ip-10-0-131-24 ansible_ssh_host=54.229.56.60 ansible_ssh_user=centos
-ip-10-0-250-172 ansible_ssh_host=54.194.148.191 ansible_ssh_user=centos
-
+${masters}
+${nodes}

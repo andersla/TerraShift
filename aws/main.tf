@@ -298,11 +298,13 @@ module "cloudflare" {
 
 # Generate Ansible inventory (identical for each cloud provider)
 module "generate-inventory" {
-  source            = "../common/inventory"
+  source            = "../common/inventory-openshift"
   master_hostnames  = "${module.master.hostnames}"
   master_public_ip  = "${module.master.public_ip}"
   edge_hostnames    = "${module.edge.hostnames}"
   edge_public_ip    = "${module.edge.public_ip}"
+  node_hostnames    = "${module.node.hostnames}"
+  node_public_ip    = "${module.node.public_ip}"
   master_as_edge    = "${var.master_as_edge}"
   edge_count        = "${var.edge_count}"
   node_count        = "${var.node_count}"

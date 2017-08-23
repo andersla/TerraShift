@@ -14,7 +14,7 @@
          "ami_name":"{{user `image_name`}}",
          "ami_description":"{{user `image_name`}}",
          "ami_groups":"all",
-         "instance_type":"t2.medium",
+         "instance_type":"t2.micro",
          "region":"{{user `region`}}",
          "secret_key":"{{user `aws_secret_access_key`}}",
          "source_ami":"{{user `source_image_id`}}",
