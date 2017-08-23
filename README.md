@@ -24,6 +24,9 @@ terraform get aws
 terraform apply --var-file="terraform-aws.tfvars" aws
 
 # deploy ansible playbooks
+#
+# OBS please note that it might take up to 20 sek for openssh to start on nodes (from terraform finish)
+#
 ssh-add "/path to your/private/ssh-key/of/which/uploaded/to-nodes (in terraform-aws.tfvars)
 ansible-playbook openshift-ansible/playbooks/byo/config.yml
 
