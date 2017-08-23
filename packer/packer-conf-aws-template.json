@@ -1,0 +1,10 @@
+{
+  "image_name": "anders-os-02",
+  "source_image_id": "ami-0d063c6b",
+  "aws_access_key_id": "your-access",
+  "aws_secret_access_key": "your-secret",
+  "region": "eu-west-1"
+}
+
+
+
