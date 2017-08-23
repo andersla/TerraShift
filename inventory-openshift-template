@@ -32,7 +32,7 @@ ${masters}
 
 # host group for etcd
 [etcd]
-${etcds}
+${masters}
 
 # host group for nodes, includes region info
 [nodes]
