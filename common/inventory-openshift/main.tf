@@ -43,7 +43,7 @@ data "template_file" "inventory" {
   vars {
     masters          = "${join("\n",formatlist("%s ansible_ssh_host=%s ansible_ssh_user=centos", var.master_hostnames, var.master_public_ip))}"
     etcds            = "${join("\n",formatlist("%s ansible_ssh_host=%s ansible_ssh_user=centos", var.master_hostnames, var.master_public_ip))}"
-    nodes            = "${join("\n",formatlist("%s ansible_ssh_host=%s ansible_ssh_user=centos", var.node_hostnames, var.node_public_ip))}"
+    nodes            = "${join("\n",formatlist("%s ansible_ssh_host=%s ansible_ssh_user=centos openshift_schedulable=true", var.node_hostnames, var.node_public_ip))}"
     ansible_ssh_user = "${var.ansible_ssh_user}"
   }
 }
