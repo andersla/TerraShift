@@ -30,6 +30,9 @@ terraform apply --var-file="terraform-aws.tfvars" aws
 ssh-add "/path to your/private/ssh-key/of/which/uploaded/to-nodes (in terraform-aws.tfvars)
 ansible-playbook openshift-ansible/playbooks/byo/config.yml
 
+# access web console
+https://<master-ip>:8443
+
 # To destroy cluster:
 terraform destroy --var-file="terraform-aws.tfvars" aws
 ```
