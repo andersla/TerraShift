@@ -28,14 +28,14 @@ openshift_disable_check=disk_availability,docker_storage,memory_availability
 
 # host group for masters
 [masters]
-ip-10-0-131-24 ansible_ssh_host=54.229.56.60 ansible_ssh_user=centos
+ip-10-0-100-41 ansible_ssh_host=54.194.201.114 ansible_ssh_user=centos
 
 # host group for etcd
 [etcd]
-ip-10-0-131-24 ansible_ssh_host=54.229.56.60 ansible_ssh_user=centos
+ip-10-0-100-41 ansible_ssh_host=54.194.201.114 ansible_ssh_user=centos
 
 # host group for nodes, includes region info
 [nodes]
-ip-10-0-131-24 ansible_ssh_host=54.229.56.60 ansible_ssh_user=centos
-ip-10-0-250-172 ansible_ssh_host=54.194.148.191 ansible_ssh_user=centos
+ip-10-0-100-41 ansible_ssh_host=54.194.201.114 ansible_ssh_user=centos
+ip-10-0-56-174 ansible_ssh_host=34.253.193.146 ansible_ssh_user=centos
 
