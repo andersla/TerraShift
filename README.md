@@ -1,7 +1,7 @@
 
 # TerraShift
 OpenShift Origin deployment automation with Terraform
-
+These scripts are tested with Terraform version 0.92 For now not working with 0.10
 
 This Packer step is not needed if you are happy with the openshift
 image that is already created and on amazon servers (region `eu-west-1`) with the name: `orn-os-01`
