@@ -58,7 +58,6 @@ If you want to use master as deployer-host then first copy inventory and ansible
     ssh -A centos@<master-ip>
 
     # Ansible
-    git clone openshift-ansible
     cd openshift-ansible
     git checkout release-3.6
     git pull
