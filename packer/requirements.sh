@@ -32,8 +32,7 @@ sudo sed -i '/OPTIONS=.*/c\OPTIONS="--selinux-enabled --insecure-registry 172.30
 
 # clone repo
 cd ~
-sudo git clone https://github.com/openshift/openshift-ansible
-cd openshift-ansible
+git clone https://github.com/openshift/openshift-ansible
 
 sudo systemctl enable docker
 sudo systemctl start docker

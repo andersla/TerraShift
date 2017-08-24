@@ -1,6 +1,6 @@
-cluster_prefix = "anders-os"
+cluster_prefix = "your-prefix"
 
-prepared_image = "anders-os-02"
+prepared_image = "orn-os-01"
 
 aws_access_key_id = "acces-key-here"
 aws_secret_access_key = "secret-acces-key-here"
