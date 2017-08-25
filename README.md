@@ -3,8 +3,12 @@
 OpenShift Origin deployment automation with Terraform
 These scripts are tested with Terraform version 0.92 For now not working with 0.10
 
+** Please note that this repo contains a subrepo so to checkout please use the ´--recursive´ parameter **
+
+    git clone --recursive https://github.com/andersla/test-terrashift.git
+
 This Packer step is not needed if you are happy with the openshift
-image that is already created and on amazon servers (region `eu-west-1`) with the name: `orn-os-01`
+image that is already created and on amazon servers (region `eu-west-1`) with the name: `orn-os-02`
 
     cd packer
     packer build -var-file="packer-conf-aws.json" build-aws.json
