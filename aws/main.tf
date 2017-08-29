@@ -21,13 +21,9 @@ variable ssh_key {
 }
 
 # Networking
-variable vpc_id {
-  default = ""
-}
+variable vpc_id {}
 
-variable subnet_id {
-  default = ""
-}
+variable subnet_id {}
 
 variable additional_sec_group_ids {
   type = "list"
