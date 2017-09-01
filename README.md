@@ -36,7 +36,9 @@ Deploy ansible playbooks:
 OBS please note that it might take up to 20 sek for openssh to start on nodes (from terraform finish)
 
 Fist add your ssh-hey:
-
+    # start agent if not already started
+    eval `ssh-agent -s`
+    # add key
     ssh-add "/path to your/private/ssh-key/of/which/uploaded/to-nodes (in terraform-aws.tfvars)
 
 Then run playbook:
