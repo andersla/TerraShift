@@ -26,6 +26,11 @@ debug_level=2
 
 openshift_disable_check=disk_availability,docker_storage,memory_availability
 
+# openshift_hostname=${master-hostname-private}
+openshift_master_cluster_hostname=${master-hostname-private}
+openshift_master_cluster_public_hostname=${master-hostname-public}
+openshift_master_default_subdomain=${master-hostname-public}
+
 # host group for masters
 [masters]
 ${masters}

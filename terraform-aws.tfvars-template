@@ -1,6 +1,6 @@
 cluster_prefix = "your-prefix"
 
-prepared_image = "orn-os-01"
+prepared_image = "orn-os-02"
 
 aws_access_key_id = "acces-key-here"
 aws_secret_access_key = "secret-acces-key-here"
