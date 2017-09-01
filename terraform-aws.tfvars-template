@@ -5,7 +5,10 @@ prepared_image = "orn-os-02"
 aws_access_key_id = "acces-key-here"
 aws_secret_access_key = "secret-acces-key-here"
 aws_region = "eu-west-1"
-availability_zone = "eu-west-1a" # Zone where subnet should be created
+availability_zone = "eu-west-1a" # Location of VPC
+
+vpc_id = "your-id-here" # comment out if you want a new
+subnet_id = "your-id-here" # comment out if you want a new
 
 ssh_user = "centos"
 ssh_key = "/path/to/cloud.key.pub"
