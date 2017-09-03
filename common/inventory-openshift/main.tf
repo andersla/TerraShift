@@ -42,7 +42,7 @@ data "template_file" "inventory" {
 
   vars {
     masters                 = "${join("\n",formatlist("%s ansible_ssh_host=%s ansible_ssh_user=${var.ansible_ssh_user}", var.master_hostnames, var.master_public_ip))}"
-    nodes                   = "${join("\n",formatlist("%s ansible_ssh_host=%s ansible_ssh_user=${var.ansible_ssh_user} openshift_node_labels=\\"{'region': 'infra','zone': 'default'}\\" openshift_schedulable=true", var.node_hostnames, var.node_public_ip))}"
+    nodes                   = "${join("\n",formatlist("%s openshift_node_labels=\\"{'region': 'infra','zone': 'default'}\\" openshift_schedulable=true", var.node_hostnames))}"
     ansible_ssh_user        = "${var.ansible_ssh_user}"
     master-hostname-private = "master_hostnames_private"
     master-hostname-public  = "master_hostnames_public"
