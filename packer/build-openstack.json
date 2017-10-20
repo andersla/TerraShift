@@ -4,7 +4,8 @@
       "source_image_name":"{{env `OS_SOURCE_IMAGE_NAME`}}",
       "network":"{{env `OS_NETWORK`}}",
       "flavor":"{{env `OS_FLAVOR`}}",
-      "floating_ip_pool":"{{env `OS_POOL_NAME`}}"
+      "floating_ip_pool":"{{env `OS_POOL_NAME`}}",
+      "ssh_username":"{{env `SSH_USERNAME`}}"
    },
    "builders":[
       {
@@ -17,7 +18,7 @@
             "{{user `network`}}"
          ],
          "floating_ip_pool":"{{user `floating_ip_pool`}}",
-         "ssh_username":"ubuntu"
+         "ssh_username":"{{user `ssh_username`}}"
       }
    ],
    "provisioners":[

@@ -1,0 +1,8 @@
+{
+  "image_name": "anders-os-02",
+  "source_image_name": "your-start-image",
+  "network": "your-network-id",
+  "flavor": "your-flavor",
+  "floating_ip_pool": "ext-net"
+}
+

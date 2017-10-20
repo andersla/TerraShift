@@ -10,6 +10,21 @@ These scripts are tested with Terraform version 0.92 For now not working with 0.
 This Packer step is not needed if you are happy with the openshift
 image that is already created and on amazon servers (region `eu-west-1`) with the name: `orn-os-02`
 
+    # If you are building on Openstack
+    # First edit configuration
+    vim packer/packer-openstack-snic-variables.sh
+
+    # Then source
+    source packer/packer-openstack-snic-variables.sh
+
+    cd packer
+    packer build build-openstack.json
+
+    # Or if you are building on Amazon
+    # First edit configuration
+    vim packer/packer-conf-aws.json
+
+    # Then
     cd packer
     packer build -var-file="packer-conf-aws.json" build-aws.json
 
