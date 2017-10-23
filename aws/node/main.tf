@@ -55,10 +55,10 @@ data "template_file" "instance_bootstrap" {
   template = "${file("${path.root}/../${ var.bootstrap_file }")}"
 
   vars {
-    master_ip     = "${var.master_ip}"
-    node_labels   = "${join(",", var.node_labels)}"
-    node_taints   = "${join(",", var.node_taints)}"
-    ssh_user      = "${var.ssh_user}"
+    master_ip   = "${var.master_ip}"
+    node_labels = "${join(",", var.node_labels)}"
+    node_taints = "${join(",", var.node_taints)}"
+    ssh_user    = "${var.ssh_user}"
   }
 }
 

@@ -34,14 +34,14 @@ If you want to add more parameters to inventory, please do so in file: `inventor
 
 Create a terraform config file from template
 
-    cp terraform-aws.tfvars-template terraform-aws.tfvars
+    cp terraform.tfvars.aws-template terraform.tfvars.aws
 
-Edit parameters in your config file: `terraform-aws.tfvars`
+Edit parameters in your config file: `terraform.tfvars.aws`
 
 Create cluster
 
     terraform get aws
-    terraform apply --var-file="terraform-aws.tfvars" aws
+    terraform apply --var-file="terraform.tfvars.aws" aws
 
 If you not are happy with default node-labeling (e.g. want master to be schedulable or add labels to master,
 then edit inventory file `intentory-openshift`

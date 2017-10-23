@@ -31,10 +31,17 @@ variable use_cloudflare {}
 variable cluster_prefix {}
 variable cloudflare_domain {}
 
-variable inventory_template_file { default="inventory-openshift-template" }
-variable inventory_output_file { default="inventory-openshift" }
-variable ansible_ssh_user { default="centos" }
+variable inventory_template_file {
+  default = "inventory-openshift-template"
+}
 
+variable inventory_output_file {
+  default = "inventory-openshift"
+}
+
+variable ansible_ssh_user {
+  default = "centos"
+}
 
 # Generate inventory from template file
 data "template_file" "inventory" {

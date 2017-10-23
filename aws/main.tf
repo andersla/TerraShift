@@ -21,9 +21,9 @@ variable ssh_key {
 }
 
 # Networking
-variable vpc_id {}
+variable vpc_id {default = ""}
 
-variable subnet_id {}
+variable subnet_id {default = ""}
 
 variable additional_sec_group_ids {
   type = "list"
@@ -180,10 +180,11 @@ module "master" {
 
   # Bootstrap settings
   bootstrap_file = "bootstrap/openshift.sh"
+
   #kubeadm_token  = "${var.kubeadm_token}"
-  node_labels    = "${split(",", var.master_as_edge == "true" ? "role=edge" : "")}"
-  node_taints    = [""]
-  master_ip      = ""
+  node_labels = "${split(",", var.master_as_edge == "true" ? "role=edge" : "")}"
+  node_taints = [""]
+  master_ip   = ""
 }
 
 module "node" {
@@ -209,10 +210,11 @@ module "node" {
 
   # Bootstrap settings
   bootstrap_file = "bootstrap/openshift.sh"
+
   #kubeadm_token  = "${var.kubeadm_token}"
-  node_labels    = ["role=node"]
-  node_taints    = [""]
-  master_ip      = "${element(module.master.local_ip_v4, 0)}"
+  node_labels = ["role=node"]
+  node_taints = [""]
+  master_ip   = "${element(module.master.local_ip_v4, 0)}"
 }
 
 module "edge" {
@@ -238,10 +240,11 @@ module "edge" {
 
   # Bootstrap settings
   bootstrap_file = "bootstrap/openshift.sh"
+
   #kubeadm_token  = "${var.kubeadm_token}"
-  node_labels    = ["role=edge"]
-  node_taints    = [""]
-  master_ip      = "${element(module.master.local_ip_v4, 0)}"
+  node_labels = ["role=edge"]
+  node_taints = [""]
+  master_ip   = "${element(module.master.local_ip_v4, 0)}"
 }
 
 module "glusternode" {
@@ -267,10 +270,11 @@ module "glusternode" {
 
   # Bootstrap settings
   bootstrap_file = "bootstrap/openshift.sh"
+
   #kubeadm_token  = "${var.kubeadm_token}"
-  node_labels    = ["storagenode=glusterfs"]
-  node_taints    = [""]
-  master_ip      = "${element(module.master.local_ip_v4, 0)}"
+  node_labels = ["storagenode=glusterfs"]
+  node_taints = [""]
+  master_ip   = "${element(module.master.local_ip_v4, 0)}"
 }
 
 # The code below (from here to end) should be identical for all cloud providers

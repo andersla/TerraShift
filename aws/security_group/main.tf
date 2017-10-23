@@ -28,7 +28,7 @@ resource "aws_security_group" "main" {
   }
 
   ingress {
-    from_port   = 8443           # HTTPS
+    from_port   = 8443          # HTTPS
     to_port     = 8443
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
