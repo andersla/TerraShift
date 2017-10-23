@@ -1,0 +1,36 @@
+# Cluster configuration
+cluster_prefix = "your-cluster-prefix" # Your cluster prefix
+floating_ip_pool = "Public External IPv4 Network"
+external_network_uuid = "52b76a82-5f02-4a3e-9836-57536ef1cb63" # The uuid of the external network in the OpenStack tenancy
+
+boot_image = "orn-os-02"
+ssh_user = "centos"
+ssh_key = "/path/to/cloud.key.pub"
+
+# Master configuration
+# obs: too small flavors might cause diffuse errors on your installation
+master_flavor = "ssc.medium"
+master_as_edge = "true"
+
+# Node configuration
+node_count = "2"
+node_flavor = "ssc.medium"
+
+# Edge configuration
+# edge_count = "2"
+# edge_flavor = "ssc.medium"
+
+# Gluster configuration
+# glusternode_count = "1"
+# glusternode_flavor = "ssc.medium"
+# glusternode_extra_disk_size = "200" # Size in GB
+
+# Cloudflare configuration (optional)
+# use_cloudflare = "true"
+# cloudflare_email = "your-cloudflare-email"
+# cloudflare_token = "your-cloudflare-token"
+# cloudflare_domain = "your-domain-name"
+
+# Cloudflare proxy (optional)
+# cloudflare_proxied = "true"
+# cloudflare_record_texts = ["record1","record2",...] # Warn: wildcards are not supported when using proxied records
