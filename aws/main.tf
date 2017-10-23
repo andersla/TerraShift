@@ -1,7 +1,7 @@
 # Cluster settings
 variable cluster_prefix {}
 
-variable prepared_image {
+variable boot_image {
   default = "opens-or-kubenow"
 }
 
@@ -143,12 +143,12 @@ module "security_group" {
 }
 
 # Lookup image-id of
-data "aws_ami" "prepared_image" {
+data "aws_ami" "boot_image" {
   most_recent = true
 
   filter {
     name   = "name"
-    values = ["${var.prepared_image}"]
+    values = ["${var.boot_image}"]
   }
 
   filter {
@@ -163,7 +163,7 @@ module "master" {
   count             = "${var.master_count}"
   name_prefix       = "${var.cluster_prefix}-master"
   instance_type     = "${var.master_instance_type}"
-  image_id          = "${data.aws_ami.prepared_image.id}"
+  image_id          = "${data.aws_ami.boot_image.id}"
   availability_zone = "${var.availability_zone}"
 
   # SSH settings
@@ -193,7 +193,7 @@ module "node" {
   count             = "${var.node_count}"
   name_prefix       = "${var.cluster_prefix}-node"
   instance_type     = "${var.node_instance_type}"
-  image_id          = "${data.aws_ami.prepared_image.id}"
+  image_id          = "${data.aws_ami.boot_image.id}"
   availability_zone = "${var.availability_zone}"
 
   # SSH settings
@@ -223,7 +223,7 @@ module "edge" {
   count             = "${var.edge_count}"
   name_prefix       = "${var.cluster_prefix}-edge"
   instance_type     = "${var.edge_instance_type}"
-  image_id          = "${data.aws_ami.prepared_image.id}"
+  image_id          = "${data.aws_ami.boot_image.id}"
   availability_zone = "${var.availability_zone}"
 
   # SSH settings
@@ -253,7 +253,7 @@ module "glusternode" {
   count             = "${var.glusternode_count}"
   name_prefix       = "${var.cluster_prefix}-glusternode"
   instance_type     = "${var.glusternode_instance_type}"
-  image_id          = "${data.aws_ami.prepared_image.id}"
+  image_id          = "${data.aws_ami.boot_image.id}"
   availability_zone = "${var.availability_zone}"
 
   # SSH settings
