@@ -54,6 +54,7 @@ data "template_file" "inventory" {
     ansible_ssh_user        = "${var.ansible_ssh_user}"
     master-hostname-private = "master_hostnames_private"
     master-hostname-public  = "master_hostnames_public"
+    test-non-existing       = "master_hostnames_public"
   }
 }
 
