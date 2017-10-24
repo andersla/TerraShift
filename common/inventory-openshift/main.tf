@@ -6,6 +6,10 @@ variable master_public_ip {
   type = "list"
 }
 
+variable master_private_ip {
+  type = "list"
+}
+
 variable edge_hostnames {
   type = "list"
 }
@@ -47,14 +51,22 @@ variable ansible_ssh_user {
   default = "centos"
 }
 
+## Generates a list of hostnames (azurerm_virtual_machine does not output them)
+#data "null_data_source" "node_hostnames" {
+#
+#  inputs = {
+#    hostname = "${split(",", join(",",var.node_private_ip ) ) }"
+#  }
+#}
+
 # Generate inventory from template file
 data "template_file" "inventory" {
 
   template = "${file("${path.root}/../${ var.inventory_template_file }")}"
 
   vars {
-    masters                 = "${join("\n",formatlist("%s openshift_public_ip=%s", var.master_hostnames, var.master_public_ip))}"
-    nodes                   = "${join("\n",formatlist("host-%s.openstacklocal openshift_node_labels= openshift_schedulable=true", replace(var.node_private_ip, "\\.", "\\-")))}"
+    masters                 = "${join("\n",formatlist("host-%s.openstacklocal openshift_public_ip=%s", split(",", replace( join(",",var.master_private_ip ), ".","-" )) , var.master_public_ip))}"
+    nodes                   = "${join("\n",formatlist("host-%s.openstacklocal openshift_node_labels='{\"region\": \"infra\",\"zone\": \"default\"}' openshift_schedulable=true", split(",", replace( join(",",var.node_private_ip ), ".","-" )) ))}"
     ansible_ssh_user        = "${var.ansible_ssh_user}"
     master-hostname-private = "master_hostnames_private"
     master-hostname-public  = "master_hostnames_public"
@@ -63,6 +75,12 @@ data "template_file" "inventory" {
 }
 
 resource "null_resource" "local" {
+  
+  # Trigger rewrite of inventory, uuid() generates a random string everytime it is called
+  triggers {
+    uuid = "${uuid()}"
+  }
+
   triggers {
     template = "${data.template_file.inventory.rendered}"
   }

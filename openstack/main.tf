@@ -24,7 +24,7 @@ variable secgroup_name {
 variable external_network_uuid {}
 
 variable dns_nameservers {
-  default = "8.8.8.8,8.8.4.4"
+  default = "10.10.0.2,8.8.8.8,8.8.4.4"
 }
 
 variable floating_ip_pool {}
@@ -287,6 +287,7 @@ module "generate-inventory" {
   source            = "../common/inventory-openshift"
   master_hostnames  = "${module.master.hostnames}"
   master_public_ip  = "${module.master.public_ip}"
+  master_private_ip = "${module.master.local_ip_v4}"
   edge_hostnames    = "${module.edge.hostnames}"
   edge_public_ip    = "${module.edge.public_ip}"
   node_hostnames    = "${module.node.hostnames}"
