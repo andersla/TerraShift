@@ -1,7 +1,7 @@
 
 # TerraShift
 OpenShift Origin deployment automation with Terraform
-These scripts are tested with Terraform version 0.92 For now not working with 0.10
+These scripts are tested with Terraform version 0.10.7
 
 **Please note that this repo contains a subrepo so to checkout please use the ´--recursive´ parameter**
 
@@ -34,14 +34,14 @@ If you want to add more parameters to inventory, please do so in file: `inventor
 
 Create a terraform config file from template
 
-    cp terraform.tfvars.aws-template terraform.tfvars.aws
+    cp terraform.tfvars.openstack-template terraform.tfvars.openstack # or aws
 
-Edit parameters in your config file: `terraform.tfvars.aws`
+Edit parameters in your config file: `terraform.tfvars.openstack` # or aws
 
 Create cluster
 
-    terraform get aws
-    terraform apply --var-file="terraform.tfvars.aws" aws
+    terraform init openstack # or aws
+    terraform apply --var-file="terraform.tfvars.openstack" # or aws
 
 If you not are happy with default node-labeling (e.g. want master to be schedulable or add labels to master,
 then edit inventory file `intentory-openshift`
@@ -55,7 +55,7 @@ Fist add your ssh-hey:
     # start agent if not already started
     eval `ssh-agent -s`
     # add your privaye key to agent
-    ssh-add "/path to your/private/ssh-key/of/which/uploaded/to-nodes (in terraform-aws.tfvars)"
+    ssh-add "/path to your/private/ssh-key/of/which/uploaded/to-nodes (in terraform-openstack.tfvars)" # or aws
 
 Then run playbook:
 
@@ -82,16 +82,12 @@ Install:
      sudo su
      yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
      yum -y --enablerepo=epel install ansible pyOpenSSL python-cryptography python-lxml
-     yum install -y unzip
+     yum -y install unzip
 
-     TERRAFORM_VERSION=0.9.8
-     TERRAFORM_SHA256SUM=f951885f4e15deb4cf66f3b199964e3e74a0298bb46c9fe42e105df2ebcf3d16
+     TERRAFORM_VERSION=0.10.7
      curl "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip" > \
          "terraform_${TERRAFORM_VERSION}_linux_amd64.zip" && \
-         echo "${TERRAFORM_SHA256SUM}  terraform_${TERRAFORM_VERSION}_linux_amd64.zip" > \
-         "terraform_${TERRAFORM_VERSION}_SHA256SUMS" && \
-         sha256sum -c "terraform_${TERRAFORM_VERSION}_SHA256SUMS" && \
-         unzip "terraform_${TERRAFORM_VERSION}_linux_amd64.zip" -d /bin && \
+         unzip "terraform_${TERRAFORM_VERSION}_linux_amd64.zip" -d
          rm -f "terraform_${TERRAFORM_VERSION}_linux_amd64.zip"
 
      exit # (su)
