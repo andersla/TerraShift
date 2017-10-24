@@ -22,6 +22,10 @@ variable node_public_ip {
   type = "list"
 }
 
+variable node_private_ip {
+  type = "list"
+}
+
 variable master_as_edge {}
 variable edge_count {}
 variable node_count {}
@@ -50,7 +54,7 @@ data "template_file" "inventory" {
 
   vars {
     masters                 = "${join("\n",formatlist("%s openshift_public_ip=%s", var.master_hostnames, var.master_public_ip))}"
-    nodes                   = "${join("\n",formatlist("%s openshift_node_labels=\"\" openshift_schedulable=true", var.node_hostnames))}"
+    nodes                   = "${join("\n",formatlist("host-%s.openstacklocal openshift_node_labels= openshift_schedulable=true", replace(var.node_private_ip, "\\.", "\\-")))}"
     ansible_ssh_user        = "${var.ansible_ssh_user}"
     master-hostname-private = "master_hostnames_private"
     master-hostname-public  = "master_hostnames_public"

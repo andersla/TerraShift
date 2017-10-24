@@ -291,6 +291,7 @@ module "generate-inventory" {
   edge_public_ip    = "${module.edge.public_ip}"
   node_hostnames    = "${module.node.hostnames}"
   node_public_ip    = "${module.node.public_ip}"
+  node_private_ip   = "${module.node.local_ip_v4}"
   master_as_edge    = "${var.master_as_edge}"
   edge_count        = "${var.edge_count}"
   node_count        = "${var.node_count}"
