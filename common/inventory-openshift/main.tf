@@ -35,7 +35,6 @@ variable edge_count {}
 variable node_count {}
 variable glusternode_count {}
 variable extra_disk_device {}
-variable use_cloudflare {}
 variable cluster_prefix {}
 variable domain {}
 
@@ -66,7 +65,7 @@ data "template_file" "inventory" {
 
   vars {
     masters                 = "${join("\n",formatlist("host-%s openshift_public_ip=%s", var.master_hostnames , var.master_public_ip))}"
-    nodes                   = "${join("\n",formatlist("host-%s openshift_node_labels=\"{'\"'region'\"': '\"'infra'\"','\"'zone'\"': '\"'default'\"'}\" openshift_schedulable=true", var.node_hostnames))}"
+    nodes                   = "${join("\n",formatlist("host-%s openshift_node_labels=\"{'\"'\"'region'\"'\"': '\"'\"'infra'\"'\"','\"'\"'zone'\"'\"': '\"'\"'default'\"'\"'}\" openshift_schedulable=true", var.node_hostnames))}"
     ansible_ssh_user        = "${var.ansible_ssh_user}"
     master-hostname-private = "${var.master_public_ip[0]}"
     master_hostname_public  = "${var.master_public_ip[0]}"
