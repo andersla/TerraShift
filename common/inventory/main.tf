@@ -69,8 +69,8 @@ data "template_file" "inventory" {
   template = "${file("${path.root}/../${ var.inventory_template_file }")}"
 
   vars {
-    masters                  = "${join("\n",formatlist("host-%s openshift_public_ip=%s", var.master_hostnames , var.master_public_ip))}"
-    nodes                    = "${join("\n",formatlist("host-%s openshift_node_labels=\"{'\"'region'\"': '\"'infra'\"','\"'zone'\"': '\"'default'\"'}\" openshift_schedulable=true", var.node_hostnames))}"
+    masters                  = "${join("\n",formatlist("%s openshift_public_ip=%s", var.master_hostnames , var.master_public_ip))}"
+    nodes                    = "${join("\n",formatlist("%s openshift_node_labels=\"{'\"'region'\"': '\"'infra'\"','\"'zone'\"': '\"'default'\"'}\" openshift_schedulable=true", var.node_hostnames))}"
     ansible_ssh_user         = "${var.ssh_user}"
     master-hostname-private  = "${var.master_hostnames[0]}"
     master_hostname_public   = "${var.domain}"

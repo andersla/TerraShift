@@ -106,7 +106,7 @@ data "null_data_source" "hostnames" {
   count = "${var.count}"
 
   inputs = {
-    hostname = "${replace(element(openstack_compute_instance_v2.instance.*.network.0.fixed_ip_v4, count.index),".","-")}"
+    hostname = "host-${replace(element(openstack_compute_instance_v2.instance.*.network.0.fixed_ip_v4, count.index),".","-")}"
   }
 }
 
