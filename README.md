@@ -96,7 +96,7 @@ Install:
      TERRAFORM_VERSION=0.10.7
      curl "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip" > \
          "terraform_${TERRAFORM_VERSION}_linux_amd64.zip" && \
-         unzip "terraform_${TERRAFORM_VERSION}_linux_amd64.zip" -d
+         unzip "terraform_${TERRAFORM_VERSION}_linux_amd64.zip" -d /usr/bin/ && \
          rm -f "terraform_${TERRAFORM_VERSION}_linux_amd64.zip"
 
      exit # (su)
