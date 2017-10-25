@@ -42,7 +42,7 @@ resource "openstack_networking_subnet_v2" "created" {
   ip_version = 4
 
   dns_nameservers = ["${compact(split(",", var.dns_nameservers))}"]
-  enable_dhcp = true
+  enable_dhcp     = true
 }
 
 resource "openstack_networking_router_v2" "created" {

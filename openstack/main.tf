@@ -310,4 +310,3 @@ module "generate-inventory" {
   gluster_volumetype = "${var.gluster_volumetype}"
   extra_disk_device  = "${element(concat(module.glusternode.extra_disk_device, list("")),0)}"
 }
-

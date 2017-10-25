@@ -103,13 +103,12 @@ resource "openstack_compute_volume_attach_v2" "attach_extra_disk" {
 
 ## Generates a list of hostnames (these hostnames are made to match hostnames in openstack dhcp/dns-server)
 data "null_data_source" "hostnames" {
-  count = "${var.count}"  
+  count = "${var.count}"
 
   inputs = {
     hostname = "${replace(element(openstack_compute_instance_v2.instance.*.network.0.fixed_ip_v4, count.index),".","-")}"
   }
 }
-
 
 # Module outputs
 output "extra_disk_device" {
