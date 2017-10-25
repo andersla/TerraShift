@@ -83,6 +83,10 @@ variable glusternode_extra_disk_size {
   default = "200"
 }
 
+variable gluster_volumetype {
+  default = "none:1"
+}
+
 # Cloudflare settings
 variable use_cloudflare {
   default = "false"
