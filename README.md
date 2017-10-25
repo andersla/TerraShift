@@ -71,7 +71,16 @@ To destroy cluster:
 
 ## Commands to create and prepare a deployer node
 
-First create and connect together vpc, subnet, security-group, route-table, internet-gateway
+AWS:
+
+     create and connect together vpc, subnet, security-group, route-table, internet-gateway
+
+Openstack:
+
+     create a network, subnet, router - connect network to external network with router
+     set dns-server in this subnetwork to 10.10.0.3, 8.8.8.8
+     create security-group
+     create a deployer instance
 
 Then ssh to server
 

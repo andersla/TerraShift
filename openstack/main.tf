@@ -24,7 +24,7 @@ variable secgroup_name {
 variable external_network_uuid {}
 
 variable dns_nameservers {
-  default = "10.10.0.2,8.8.8.8,8.8.4.4"
+  default = "8.8.8.8,8.8.4.4"
 }
 
 variable floating_ip_pool {}
