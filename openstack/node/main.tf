@@ -101,6 +101,16 @@ resource "openstack_compute_volume_attach_v2" "attach_extra_disk" {
   volume_id   = "${element(openstack_blockstorage_volume_v2.extra_disk.*.id, count.index)}"
 }
 
+## Generates a list of hostnames (these hostnames are made to match hostnames in openstack dhcp/dns-server)
+data "null_data_source" "hostnames" {
+  count = "${var.count}"  
+
+  inputs = {
+    hostname = "${replace(element(openstack_compute_instance_v2.instance.*.network.0.fixed_ip_v4, count.index),".","-")}"
+  }
+}
+
+
 # Module outputs
 output "extra_disk_device" {
   value = ["${openstack_compute_volume_attach_v2.attach_extra_disk.*.device}"]
@@ -115,8 +125,12 @@ output "public_ip" {
 }
 
 output "hostnames" {
-  value = ["${openstack_compute_instance_v2.instance.*.name}"]
+  value = ["${data.null_data_source.hostnames.*.inputs.hostname}"]
 }
+
+#output "hostnames" {
+#  value = ["${openstack_compute_instance_v2.instance.*.name}"]
+#}
 
 output "node_labels" {
   value = "${var.node_labels}"

@@ -32,3 +32,7 @@ resource "cloudflare_record" "rec" {
   type    = "A"
   proxied = "${ var.proxied }"
 }
+
+output "domain" {
+  value = "${ var.cloudflare_domain }"
+}
