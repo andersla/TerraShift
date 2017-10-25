@@ -1,6 +1,7 @@
 variable cloudflare_email {}
 variable cloudflare_token {}
 variable cloudflare_domain {}
+variable cloudflare_subdomain {}
 
 variable record_count {
   default = 0
@@ -33,6 +34,6 @@ resource "cloudflare_record" "rec" {
   proxied = "${ var.proxied }"
 }
 
-output "domain" {
-  value = "${ var.cloudflare_domain }"
+output "domain_and_subdomain" {
+  value = "${var.cloudflare_subdomain == "" ? var.cloudflare_domain : format("%s.%s", var.cloudflare_subdomain, var.cloudflare_domain)}"
 }
