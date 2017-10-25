@@ -66,13 +66,17 @@ data "template_file" "inventory" {
 
   vars {
     masters                 = "${join("\n",formatlist("host-%s.openstacklocal openshift_public_ip=%s", split(",", replace( join(",",var.master_private_ip ), ".","-" )) , var.master_public_ip))}"
-    nodes                   = "${join("\n",formatlist("host-%s.openstacklocal openshift_node_labels='{\"region\": \"infra\",\"zone\": \"default\"}' openshift_schedulable=true", split(",", replace( join(",",var.node_private_ip ), ".","-" )) ))}"
+    nodes                   = "${join("\n",formatlist("host-%s.openstacklocal openshift_node_labels=\"{'region': 'infra','zone': 'default'}\" openshift_schedulable=true", split(",", replace( join(",",var.node_private_ip ), ".","-" )) ))}"
     ansible_ssh_user        = "${var.ansible_ssh_user}"
     master-hostname-private = "master_hostnames_private"
     master-hostname-public  = "master_hostnames_public"
     test-non-existing       = "master_hostnames_public"
   }
 }
+
+
+
+
 
 resource "null_resource" "local" {
   
@@ -86,6 +90,11 @@ resource "null_resource" "local" {
   }
 
   provisioner "local-exec" {
-    command = "echo \"${data.template_file.inventory.rendered}\" > ${path.root}/../${var.inventory_output_file}"
+    command = "echo '${data.template_file.inventory.rendered}' > \"${path.root}/../${var.inventory_output_file}\""
   }
 }
+
+
+#output "hostnames" {
+#  value = "${data.template_file.inventory.rendered}"
+#}
